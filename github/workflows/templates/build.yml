@@ -1,0 +1,28 @@
+name: Build Template
+
+on:
+    workflow_call:
+        inputs:
+            build_type:
+                required: true
+                type: string
+
+jobs:
+    build:
+        runs-on: ubtuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Build Artifact
+            run: |
+                case ${{ inouts.build_type }} in
+                    "pip") pip install . -t dist/ && tar -czf artifact.tar.gz dist/ ;;
+                    "maven") mvn package ;;
+                    "npm") npm install && npm run build && tar -czf artifact.tar.gz dist/ ;;
+                    *) echo "Build not supported for ${{ inuts.build_type }}" ;;
+                esac
+            - uses: actions/upload-artifact@v4
+            with:
+                name: artifact
+                path: artifact.tar.gz
+
+                

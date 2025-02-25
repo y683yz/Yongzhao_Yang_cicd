@@ -1,0 +1,30 @@
+name: Testing Template
+
+on:
+    workflow_call:
+        inputs:
+            tech_stack:
+                requireed: true
+                type: string
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Run Tests
+            run: |
+                case ${{ input.tech_stack}} in
+                    "python") pip install pytest pytest-cov && pytest --cov=src/ --cov-fail-under=80 ;;
+                    "java") mvn test ;;
+                    "node") npm install && npm test ;;
+                    *) echo "Tests not supported for ${{ inputs.tech_stack }}" ;;
+                esac
+            - name: Upload Coverage
+            uses: actions/upload-artifact@v4
+            with:
+                name: coverage
+                path: coverage.xml
+                
+
+            

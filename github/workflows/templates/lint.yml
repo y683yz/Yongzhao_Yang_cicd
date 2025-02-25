@@ -1,0 +1,23 @@
+name: Linting Template
+
+on:
+    workflow_call:
+        inputs:
+            tech_stack:
+                required: true
+                type: string
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Run Linting
+            run: |
+            case ${{ inputs.tech_stack }} in 
+                "python") pip install fake8 && flake8 src/ ;;
+                "java") mvn checkstyle:check ;;
+                "node") npm install && npm run lint ;;
+                *) echo "Linting not supported for ${{ inputs.tech_stack }}" ;;
+            esac
+            
