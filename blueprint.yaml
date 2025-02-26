@@ -1,0 +1,26 @@
+project:
+    name: "my app"
+    tech_stack: "python"    # options: python, java, cpp, node, dotnet, etc
+    build_type: "pip"   # options: npm, moven, pip, cmake, etc, mapping to tech_stack
+    deployment_methid: "docker" # options: docker, terraform, cdk, cloudformation, sam, etc
+
+branching:
+    dev_branch: "dev"
+    staging_branch: "staging"
+    prod_branch: "main"
+    versioning: "semver"
+
+stages:
+    linting: true
+    static_analysis: true
+    unit_tests: true
+    integration_tests: false
+    security_scan: true
+    artifact: true
+    deploy: true
+
+customizations:
+    lint_tool: "flake8" #overrides default for Python
+    test_tool: "pytest"
+    coverage_threshold: 80  # minimum code coverage percentage
+    
