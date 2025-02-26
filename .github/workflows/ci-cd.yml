@@ -35,7 +35,7 @@ jobs:
     lint:
         needs: setup
         if: ${{ contains(fromJson(needs.setup.outputs.stages), 'deploy') && (github.ref_name =='staging' || github.ref_name == 'main') }}
-        uses: ./.github/workflows/templates/deploy.yml
+        uses: ./workflows/templates/deploy.yml
         with: 
             deploy_method: ${{ needs.setup.outputs.deploy_method }}
             environment: ${{ github.ref_name == 'main' && 'prod' || 'staging'}}
