@@ -27,6 +27,6 @@ jobs:
                         docker build -t ${{ github.repository }}:${{ github.sha }} .
                         docker push ${{ github.repository }}:${{ github.sha }} ;;
                     "terraform") terraform apply -auto-approve ;;
-                    *) echo "Deploy not supported for ${{ inouts.deploy_method }}"
+                    *) echo "Deploy not supported for ${{ inputs.deploy_method }}"
                 esac
                 
