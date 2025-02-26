@@ -10,7 +10,7 @@ on:
 
 jobs:
     setup:
-        runs_on: ubuntu_latest
+        runs-on: ubuntu_latest
         outputs:
             tech_stack: ${{ steps.parse.outputs.tech_stack }}
             build_type: ${{ steps.parse.outputs.build_type }}
@@ -19,11 +19,11 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - name: Parse Blueprint
-            id: parse
-            run: |
+              id: parse
+              run: |
                 chmod +x .github/scripts/parse_blueprint.sh
                 .github/scripts/parse_blueprint.sh
-            shell: bash
+              shell: bash
         
     lint:
         needs: setup
