@@ -16,7 +16,7 @@ jobs:
         outputs:
             tech_stack: ${{ steps.parse.outputs.tech_stack }}
             build_type: ${{ steps.parse.outputs.build_type }}
-            deploy_method: ${{ steps.parse.outputs.deploy_method }}
+            deploy_method: ${{ steps.parse.outputs.deployment_method }}
             stages: ${{ steps.parse.outputs.stages }}
         steps:
             - uses: actions/checkout@v4
@@ -26,16 +26,11 @@ jobs:
                 chmod +x .github/scripts/parse_blueprint.sh
                 .github/scripts/parse_blueprint.sh
               shell: bash
-            
-            - name: Extract version from tag
-              run: | 
-                VERSION=${GITHUB_REF#refs/tags/v}}
-                echo "VERSION=$VERSION" >> $GITHUB_ENV
         
     lint:
         needs: setup
         if: ${{ contains(fromJson(needs.setup.outputs.stages), 'deploy') && (github.ref_name =='staging' || github.ref_name == 'main') }}
-        uses: ./.github/workflows/deploy.yml
+        uses: ./.github/workflows/templates/deploy.yml
         with: 
             deploy_method: ${{ needs.setup.outputs.deploy_method }}
             environment: ${{ github.ref_name == 'main' && 'prod' || 'staging'}}
