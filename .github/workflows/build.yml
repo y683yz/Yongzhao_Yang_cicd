@@ -6,9 +6,6 @@ on:
             build_type:
                 required: true
                 type: string
-            environment:
-                required: true
-                type: string
 
 jobs:
     build:
