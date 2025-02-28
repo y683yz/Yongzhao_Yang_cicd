@@ -21,3 +21,24 @@ This solution covers these key concepts: "Blueprint-driven", "Modularity", "Stan
 * __Execute pipeline__: run tasks: lint, test, build, deploy, and etc.
 
 ## Directory structure
+project (CICD)
+|_ .github
+|  |_ scripts
+|  |  |_ parse-blueprint.sh
+|  |_ workflows
+|  |  |_ ci-cd.yml  # main workflow
+|  |  |_ templates  # reusable workflow templates
+|  |     |_ build-yml
+|  |     |_ deploy-yml
+|  |     |_ lint-yml
+|  |     |_ test-yml
+|  |_ src
+|  |  |_ test_capitalize.py
+|_ .gitignore
+|_ blueprint.yaml
+|_ README.md
+
+**NOTE**
+* __templates folder__:  NOTE: these have been moved into workflows folder in the implementation, as issues in github
+* __src__: Saving test assets
+
