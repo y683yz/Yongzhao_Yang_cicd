@@ -15,7 +15,7 @@ jobs:
             - name: Run Tests
               run: |
                 case ${{ inputs.tech_stack}} in
-                    "python") pip install pytest pytest-cov && pytest --cov=src/ --cov-fail-under=80 ;;
+                    "python") python3 -m venv path/to/venv && source path/to/venv/bin/activate && python3 -m pip install pytest pytest-cov && pytest --cov=src/ --cov-fail-under=80 ;;
                     "java") mvn test ;;
                     "node") npm install && npm test ;;
                     *) echo "Tests not supported for ${{ inputs.tech_stack }}" ;;
