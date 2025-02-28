@@ -21,6 +21,7 @@ This solution covers these key concepts: "Blueprint-driven", "Modularity", "Stan
 * __Execute pipeline__: run tasks: lint, test, build, deploy, and etc.
 
 ## Directory structure
+```
 project (CICD)
 |_ .github
 |  |_ scripts
@@ -37,8 +38,8 @@ project (CICD)
 |_ .gitignore
 |_ blueprint.yaml
 |_ README.md
-
+```
 **NOTE**
 * __templates folder__:  NOTE: these have been moved into workflows folder in the implementation, as issues in github
-* __src__: Saving test assets
+* __src__: Saving app source codes, and test assets
 
