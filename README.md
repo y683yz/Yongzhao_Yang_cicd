@@ -43,3 +43,4 @@ project (CICD)
 * __templates folder__:  NOTE: these have been moved into workflows folder in the implementation, as issues in github
 * __src__: Saving app source codes, and test assets
 
+By creating new workflows templates, the pipeline is easy to expand to cover these workflows (, which are not touched in this implementation): integration tests, static analysis, security scan, and any other further requirements.
